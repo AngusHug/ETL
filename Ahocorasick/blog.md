@@ -43,7 +43,7 @@ AC算法中有三个核心函数，分别是：
 
 * <u>对于3中：深度d-1的函数值，计算所有深度为d的函数值，即：对于状态9，g(8,s)=9，则f(9)=g(f(8),s)；根据递推式从深度d-1推到深度d的失效函数值</u>
 
-![Image](https://github.com/AngusHug/ETL/blob/master/Ahocorasick/img/Image%20%5B3%5D.png)
+![Image](https://github.com/AngusHug/ETL/blob/master/Ahocorasick/img/Image3.png)
 * **<u>若从状态i读取失败跳转到j，则可以理解为word[j]是word[i]的最长后缀(只包含后缀不包含完整单词)</u>**
 
 |模式串|后缀|失败跳转(红色虚线)|备注|
