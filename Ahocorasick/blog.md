@@ -13,10 +13,10 @@ AC算法中有三个核心函数，分别是：
 #### 二、算法匹配过程
 ##### 示例模式集{he,she,his,hers}
 根据模式集构建字典树
-![image](https://github.com/AngusHug/ETL/raw/master/Ahocorasick/img/img.png)
+![Image text](https://github.com/AngusHug/ETL/raw/master/Ahocorasick/img/img.png)
 
 1. 首先尝试按succes表转义。按照文本的指示转移。
-![image](https://github.com/AngusHug/ETL/raw/master/Ahocorasick/img/img[2].png)
+![Image text](https://github.com/AngusHug/ETL/raw/master/Ahocorasick/img/img[2].png)
 
 * 每个节点对应状态，从状态0到状态9。定义状态转移函数g(i,c)=j表示指状态i读一个字符c转移到状态j，例如g(0,h)=1,g(1,e)=2
 * 在简历字典树的时候同时建立转向函数
@@ -43,7 +43,7 @@ AC算法中有三个核心函数，分别是：
 
 * <u>对于3中：深度d-1的函数值，计算所有深度为d的函数值，即：对于状态9，g(8,s)=9，则f(9)=g(f(8),s)；根据递推式从深度d-1推到深度d的失效函数值</u>
 
-![image](https://github.com/AngusHug/ETL/raw/master/Ahocorasick/img/img[3].png)
+![Image text](https://github.com/AngusHug/ETL/raw/master/Ahocorasick/img/img[3].png)
 * **<u>若从状态i读取失败跳转到j，则可以理解为word[j]是word[i]的最长后缀(只包含后缀不包含完整单词)</u>**
 
 |模式串|后缀|失败跳转(红色虚线)|备注|
