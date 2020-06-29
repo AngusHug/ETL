@@ -24,7 +24,9 @@ class Ahocorasick(object):
         """添加单词到trie树"""
         current = self.__root
         for char in word:
+            print(char, current.next, current.fail, current.length)
             current = current.next.setdefault(char, Node())
+            # dic.setdefault:如果字典中有指定键则返回对应值，否则返回设置的值
         current.length = len(word)
         
     def make(self):
@@ -35,7 +37,7 @@ class Ahocorasick(object):
             queue.append(self.__root.next[key])
             
         # 广度优先算法遍历设置fai指针
-        while len(queue) > 0 :
+        while len(queue) >0 :
             
             # 基于当前结点的fail指针设置其子节点的fail指针
             current = queue.pop(0)
@@ -55,7 +57,7 @@ class Ahocorasick(object):
                     current.next[k].fail = self.__root
                     
                 queue.append(current.next[k])
-                
+        
     def search(self, content):
         """后向最大匹配
         对content文本进行多模匹配，返回后向最大匹配结果
@@ -76,8 +78,8 @@ class Ahocorasick(object):
                 p = p.fail
             else:
                 p = p.next[word]
-                if p.length > 0 :
-                    result.append((current_position-p.length+1, current_position))
+                if p.length > 0:
+                    result.append((current_position - p.length + 1, current_position))
         return result
     
     def seach_all(self, content):
@@ -104,7 +106,21 @@ class Ahocorasick(object):
                 while tmp != self.__root:
                     if tmp.length > 0:
                         result.append(
-                            (current_position - tmp.length + 1,current_position)
+                            (current_position - tmp.length + 1, current_position)
                         )
-        return  result
+        return result
     
+    
+if __name__ == '__main__':
+    ah = Ahocorasick()
+    # string = '百度是500强公司中的科技公司'
+    # ah.add_word(string)
+    x = ["百度", "家", "高科技", "科技", "科技公司", "百度钱包"]
+    for i in x:
+        ah.add_word(i)
+    string = '百度是500强公司中的科技公司'
+    for begin, end in ah.seach_all(string):
+        print('all:', string[begin:end + 1])
+        
+    for begin, end in ah.search(string):
+        print('search:', string[begin:end + 1])
